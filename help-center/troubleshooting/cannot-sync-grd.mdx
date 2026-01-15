@@ -1,0 +1,27 @@
+---
+title: Cannot Sync Data in grd
+description: Resolve sync issues in Elfilay Filou grd.
+---
+
+## Problem
+
+- `grdfilou sync` fails
+- Error: "Unable to reach server"
+
+## Causes
+
+- Network offline
+- API token incorrect
+
+## Quick Fix
+
+<Steps>
+  <Step title="Check your internet connection">
+    ````bash
+    ping elfilayfilou.com
+    ````
+  </Step>
+  <Step title="Verify your API token">
+    Ensure your token is correct in `~/.grd/config`.
+  </Step>
+</Steps>

@@ -1,0 +1,131 @@
+---
+title: Integrations
+description: Connect Elfilay Filou with external services to enhance your workflow and automate data flows.
+---
+
+## Overview
+
+Elfilay Filou supports seamless integrations with popular third-party services, webhooks, APIs, and databases. You configure these connections from the dashboard at `https://dashboard.example.com/integrations`. This guide walks you through setting up common integrations to automate your workflows.
+
+<Callout kind="info">
+  Enable the Integrations feature in your account settings before proceeding.
+</Callout>
+
+## Third-Party App Connections
+
+Connect Elfilay Filou to apps like Slack, GitHub, and Stripe using OAuth or API keys. Start by navigating to the Integrations page in your dashboard.
+
+<Columns cols={3}>
+  <Card title="Slack" icon="message-circle" href="https://dashboard.example.com/integrations/slack">
+    Send notifications for events like user signups.
+  </Card>
+  <Card title="GitHub" icon="github" href="https://dashboard.example.com/integrations/github">
+    Trigger deployments on webhook events.
+  </Card>
+  <Card title="Stripe" icon="credit-card" href="https://dashboard.example.com/integrations/stripe">
+    Sync payment data automatically.
+  </Card>
+</Columns>
+
+Each connection requires your app's API credentials. Test the integration immediately after setup.
+
+## Webhook Configuration
+
+Webhooks allow external services to receive real-time updates from Elfilay Filou. Follow these steps to configure a webhook.
+
+<Steps>
+  <Step title="Create Webhook" icon="plus">
+    Go to `https://dashboard.example.com/webhooks/new`.
+    
+    Enter your endpoint URL, such as `https://your-webhook-url.com/webhook`.
+  </Step>
+  <Step title="Select Events" icon="zap">
+    Choose events like `user.created` or `payment.failed`.
+  </Step>
+  <Step title="Verify and Save" icon="check-circle">
+    Add a secret for signature verification and save.
+    
+````bash
+curl -X POST https://dashboard.example.com/webhooks/verify \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"webhook_id": "wh_123"}'
+````
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Always validate webhook signatures using HMAC SHA-256 to prevent unauthorized requests.
+</Callout>
+
+## API Integration Basics
+
+Use the Elfilay Filou API to integrate programmatically. Authenticate with `Authorization: Bearer YOUR_API_KEY`.
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer token obtained from dashboard.
+</ParamField>
+
+<ParamField query="event_type" param-type="string" required="false">
+  Filter events, e.g., `user.signup`.
+</ParamField>
+
+Here's how to fetch recent events:
+
+<CodeGroup tabs="JavaScript,Python,cURL">
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/events', {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  });
+  const events = await response.json();
+  console.log(events);
+  ```
+  ```python
+  import requests
+
+  response = requests.get(
+    'https://api.example.com/v1/events',
+    headers={'Authorization': 'Bearer YOUR_API_KEY'}
+  )
+  events = response.json()
+  print(events)
+  ```
+  ```bash
+  curl -X GET https://api.example.com/v1/events \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+</CodeGroup>
+
+## Syncing with Databases
+
+Sync Elfilay Filou data to your database using webhooks or scheduled jobs. Use Tabs below for popular databases.
+
+<Tabs>
+  <Tab title="PostgreSQL" icon="database">
+    Create a listener endpoint that inserts data.
+    
+````sql
+INSERT INTO events (id, type, payload)
+VALUES ($1, $2, $3)
+ON CONFLICT (id) DO UPDATE SET payload = $3;
+````
+  </Tab>
+  <Tab title="MongoDB" icon="database">
+    Use Node.js to upsert documents.
+    
+````javascript
+db.collection('events').updateOne(
+  { id: webhook.id },
+  { $set: webhook.payload },
+  { upsert: true }
+);
+````
+  </Tab>
+</Tabs>
+
+<Expandable title="Advanced Sync Options" default-open="false">
+  For high-volume syncs, batch events every 5 minutes using the API's pagination.
+</Expandable>
+
+These integrations streamline your data flows. Explore the dashboard to customize further.

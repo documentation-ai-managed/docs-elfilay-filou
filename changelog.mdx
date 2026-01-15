@@ -1,0 +1,120 @@
+---
+title: Changelog
+description: Stay informed about the latest updates, new features, and improvements in Elfilay Filou.
+---
+
+## Recent Updates
+
+Stay current with Elfilay Filou's evolution. You receive new capabilities for real-time data visualization, enhanced security, and smoother performance in every release. Review the highlights below and upgrade to benefit immediately.
+
+<Callout kind="info">
+  Check the [GitHub releases page](https://github.com/elfilay/filou/releases) for full details, download links, and migration guides.
+</Callout>
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added real-time collaboration dashboards, allowing multiple users to edit visualizations simultaneously via WebSockets.
+- Introduced custom theme support with your brand color `#3B82F6` as the default accent.
+- New export options for dashboards to PDF and interactive HTML.
+
+## Improvements
+
+- Optimized query performance by `>30%` for large datasets.
+- Enhanced mobile responsiveness with touch-friendly controls.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Integrated AI-powered insights that automatically detect anomalies in your metrics.
+- Added webhook support for external notifications on `https://your-webhook-url.com/webhook`.
+
+## Bug Fixes
+
+- Fixed dashboard refresh loops when using `{API_KEY}` authentication.
+- Resolved rendering issues with charts containing `<100ms` latency data points.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Breaking Changes
+
+- Removed legacy v0.x config format; migrate to new YAML structure.
+- Updated default API endpoint to `https://api.example.com/v1`.
+
+## New Features
+
+- Core dashboard with drag-and-drop widgets.
+- User authentication via `https://auth.example.com`.
+- Basic metrics tracking for `>50 users`.
+
+## Initial Setup Notes
+
+Run the migration script for seamless upgrade.
+
+</Update>
+
+## Upgrading to v1.2.0
+
+Follow these steps to update Elfilay Filou and access the latest features.
+
+<Steps>
+  <Step title="Backup Your Data" icon="database">
+    Export your current dashboards from `https://dashboard.example.com/export`.
+
+    ```bash
+    curl -H "Authorization: Bearer YOUR_TOKEN" \
+         https://api.example.com/export > backup.json
+    ```
+  </Step>
+  <Step title="Install Latest Version" icon="download">
+    Update via your package manager.
+
+    <CodeGroup tabs="npm,yarn,pnpm">
+      ````bash
+      npm install elfilay-filou@1.2.0
+      ````
+
+      ````bash
+      yarn add elfilay-filou@1.2.0
+      ````
+
+      ````bash
+      pnpm add elfilay-filou@1.2.0
+      ````
+    </CodeGroup>
+  </Step>
+  <Step title="Run Migration" icon="settings">
+    Execute the built-in migrator.
+
+    ```bash
+    npx elfilay-filou migrate
+    ```
+  </Step>
+  <Step title="Restart and Verify" icon="check-circle">
+    Restart your application and test at `https://dashboard.example.com`.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Review deprecation notices in each release. Set `debug={true}` in your config for detailed logs during upgrade.
+</Callout>
+
+## Next Steps
+
+<Columns cols={3}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Set up Elfilay Filou in minutes.
+  </Card>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your API access.
+  </Card>
+  <Card title="Introduction" icon="book-open" href="/introduction">
+    Explore core concepts.
+  </Card>
+</Columns>

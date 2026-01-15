@@ -1,0 +1,132 @@
+---
+title: Quickstart Guide
+description: Get up and running with Elfilay Filou in minutes by setting up your account and creating your first grid.
+---
+
+## Prerequisites
+
+Before starting, ensure you have:
+
+- A modern web browser (Chrome, Firefox, or Safari)
+- An email address for account registration
+- Sample data ready, such as a CSV file with sales records
+
+<Callout kind="info">
+
+Elfilay Filou requires no software installation. Everything runs in your browser.
+
+</Callout>
+
+## Register Your Account
+
+Sign up for Elfilay Filou to access the dashboard and create grids.
+
+<Steps>
+  <Step title="Visit the Dashboard" icon="globe">
+    Navigate to `https://dashboard.example.com` and click **Sign Up**.
+  </Step>
+  <Step title="Enter Details" icon="user">
+    Provide your email, create a password, and verify your account via email.
+  </Step>
+  <Step title="Log In" icon="log-in">
+    Return to the dashboard, enter your credentials, and access the main interface.
+  </Step>
+</Steps>
+
+## Create Your First Grid
+
+Grids in Elfilay Filou organize your data visually. Follow these steps to build one.
+
+<Steps>
+  <Step title="New Grid" icon="plus">
+    Click **New Grid** in the dashboard sidebar.
+    
+    Enter a name like "Sales Overview" and select a blank template.
+  </Step>
+  <Step title="Configure Columns" icon="settings">
+    Add columns: `Date` (date type), `Product` (string), `Revenue` (number).
+  </Step>
+  <Step title="Save and Preview" icon="save">
+    Save your grid. Preview it to see the empty structure ready for data.
+  </Step>
+</Steps>
+
+## Import Basic Data
+
+Load data into your grid using common formats. Choose your preferred method.
+
+<Tabs>
+  <Tab title="CSV Upload" icon="upload">
+    <Steps>
+      <Step title="Prepare File">
+        Create a CSV with headers matching your columns:
+        
+````csv
+Date,Product,Revenue
+2024-01-15,Laptop,1299.99
+2024-01-16,Mouse,29.99
+````
+        
+      </Step>
+      <Step title="Upload">
+        In your grid, select **Import > CSV**, choose the file, and map columns.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="JSON via API" icon="code">
+    Use the API to push data programmatically.
+    
+    <CodeGroup tabs="JavaScript,Python">
+````javascript
+const data = [
+  { date: "2024-01-15", product: "Laptop", revenue: 1299.99 },
+  { date: "2024-01-16", product: "Mouse", revenue: 29.99 }
+];
+
+await fetch("https://api.example.com/v1/grids/YOUR_GRID_ID/import", {
+  method: "POST",
+  headers: { "Authorization": "Bearer YOUR_API_KEY", "Content-Type": "application/json" },
+  body: JSON.stringify({ data })
+});
+````
+````python
+import requests
+
+data = [
+    {"date": "2024-01-15", "product": "Laptop", "revenue": 1299.99},
+    {"date": "2024-01-16", "product": "Mouse", "revenue": 29.99}
+]
+
+response = requests.post(
+    "https://api.example.com/v1/grids/YOUR_GRID_ID/import",
+    headers={"Authorization": "Bearer YOUR_API_KEY", "Content-Type": "application/json"},
+    json={"data": data}
+)
+````
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+
+Replace `YOUR_GRID_ID` and `YOUR_API_KEY` with values from your dashboard.
+
+</Callout>
+
+## Next Steps
+
+Explore more features to enhance your grids.
+
+<Columns cols={3}>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your API access with tokens.
+  </Card>
+  <Card title="Advanced Grids" icon="grid" href="/introduction">
+    Learn layouts and formulas.
+  </Card>
+  <Card title="Data Export" icon="download" href="/changelog">
+    Export and share your work.
+  </Card>
+</Columns>
+
+Your first grid is now live! Customize it further or import more datasets to analyze trends like revenue growth.

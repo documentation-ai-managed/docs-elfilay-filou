@@ -1,0 +1,104 @@
+---
+title: Introduction to Elfilay Filou
+description: Discover Elfilay Filou, a SaaS platform designed for efficient grid-based data management and visualization.
+---
+
+## Overview
+
+Elfilay Filou empowers you to manage and visualize grid-based data effortlessly. As a SaaS platform, it provides intuitive tools for importing, editing, and analyzing tabular datasets in real-time. You handle large grids with low latency, apply filters, and generate insights without complex setups.
+
+Whether you work with spreadsheets, databases, or custom data exports, Elfilay Filou streamlines your workflow. Access it via `https://dashboard.example.com` and start transforming raw data into actionable visuals today.
+
+## Key Features
+
+Elfilay Filou stands out with powerful capabilities tailored for data professionals.
+
+<Columns cols={3}>
+  <Card title="Real-Time Collaboration" icon="users" href="#collaboration">
+    Share grids with your team and edit simultaneously. Changes sync instantly across all users.
+  </Card>
+  <Card title="Advanced Filtering" icon="filter" href="#filtering">
+    Apply complex filters, sorts, and aggregations. Preview results before committing.
+  </Card>
+  <Card title="Custom Visualizations" icon="bar-chart-3" href="#visualizations">
+    Create charts, heatmaps, and pivot tables from your grids. Export as PNG or PDF.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+  All features integrate seamlessly with your existing tools like Google Sheets or Airtable.
+</Callout>
+
+## Target Use Cases
+
+Elfilay Filou fits various scenarios across industries.
+
+<Tabs>
+  <Tab title="Data Analysis" icon="trending-up">
+    Analyze sales data, customer metrics, or financial reports in grid format. Use built-in formulas like `SUM(column)` or pivot for summaries.
+  </Tab>
+  <Tab title="Project Management" icon="calendar">
+    Track tasks, timelines, and resources in collaborative grids. Assign owners and set deadlines directly.
+  </Tab>
+  <Tab title="Inventory Tracking" icon="package">
+    Monitor stock levels, suppliers, and orders. Set alerts for low inventory thresholds.
+  </Tab>
+</Tabs>
+
+## Get Started Quickly
+
+Follow these steps to create your first grid.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Visit `https://dashboard.example.com/signup` and create an account with your email.
+  </Step>
+  <Step title="Create a Grid" icon="plus">
+    Click "New Grid" and upload a CSV file or enter data manually.
+  </Step>
+  <Step title="Visualize Data" icon="eye">
+    Select columns and choose a chart type. Preview and share instantly.
+  </Step>
+</Steps>
+
+Here is a simple example using the JavaScript SDK to fetch a grid:
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+  import { ElfilayFilou } from '@elfilay/filou-sdk';
+
+  const client = new ElfilayFilou({ apiKey: 'YOUR_API_KEY' });
+  const grid = await client.grids.get('grid-123');
+  console.log(grid.data);
+  ```
+  ```python
+  from elfilay_filou import ElfilayFilou
+
+  client = ElfilayFilou(api_key="YOUR_API_KEY")
+  grid = client.grids.get("grid-123")
+  print(grid.data)
+  ```
+</CodeGroup>
+
+## Navigation Guide
+
+Explore more with these resources:
+
+<Columns cols={2}>
+  <Card title="Quickstart" icon="zap" href="/quickstart">
+    Set up your first project in minutes.
+  </Card>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your API access.
+  </Card>
+  <Card title="API Reference" icon="code" href="/api-reference">
+    Full endpoint documentation.
+  </Card>
+  <Card title="Changelog" icon="git-branch" href="/changelog">
+    Latest updates and improvements.
+  </Card>
+</Columns>
+
+<Callout kind="info">
+  Need help? Check the [Help Center](/help-center) or contact support at support@example.com.
+</Callout>
